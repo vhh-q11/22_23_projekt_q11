@@ -3,11 +3,15 @@ class Mqtt {
     this.clientid =
       "vhh" + new Date().getMilliseconds() + new Date().getSeconds();
 
-    this.client = new Paho.MQTT.Client("mqtt.eclipseprojects.io", 443, clientid);
+    this.client = new Paho.MQTT.Client(
+      "mqtt.eclipseprojects.io",
+      443,
+      clientid
+    );
 
-    this.client.onConnectionLost = onConnectionLost;
-    this.client.onMessageArrived = onMessageArrived;
-    this.client.connect({ onSuccess: onConnect });
+    this.client.onConnectionLost = this.onConnectionLost;
+    this.client.onMessageArrived = this.onMessageArrived;
+    this.client.connect({ onSuccess: this.onConnect });
   }
 
   onConnect() {
@@ -27,3 +31,5 @@ class Mqtt {
     this.client.disconnect();
   }
 }
+
+console.log("mqtt class loaded");

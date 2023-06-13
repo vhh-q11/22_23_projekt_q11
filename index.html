@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-    <meta name="viewport" content="width=device-width">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-</head>
+  <body>
+    <canvas id="drawingArea"> </canvas>
+    <canvas
+      id="myCanvas"
+      width="200"
+      height="100"
+      style="border: 1px solid #d3d3d3"
+    >
+  </canvas>
 
-<body>
+    <script>
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      ctx.moveTo(0, 0);
+      ctx.lineTo(200, 100);
+      ctx.stroke();
+    </script>
+  </body>
+  <script src="draw.js"></script>
+  <script scr="paho-mqtt.js"></script>
+  <script scr="mqtt.js"></script>
 
-    <div id="drawingContainer">
-        <canvas id="drawingArea">
-
-        </canvas>
-    </div>
-
-
-</body>
-<script src="draw.js"> </script>
-<script scr="paho-mqtt.js"></script>
-<script scr="mqtt.js"></script>
-<script>
-    var area=document.getElementById("drawingArea")
-    var drawpad=new Drawpad(area); 
-
-</script>
+  <script>
+    var area = document.getElementById("drawingArea");
+    var drawpad = new Drawpad(area);
+   // var mqtt=new Mqtt();
+  </script>
 </html>
