@@ -1,11 +1,12 @@
 class Mqtt {
-  
-  constructor() {
+  constructor(listener) {
+    this.listener = listener;
+   
+    console.log("Konstruktor mit Listener: "+listener);
     this.isConnected = "nein";
   }
 
   connect() {
-    
     this.clientid =
       "vhh" + new Date().getMilliseconds() + new Date().getSeconds();
 
@@ -41,11 +42,12 @@ class Mqtt {
     this.isConnected = "ja";
     console.log("function onConnect");
     console.log("connected: " + this.isConnected);
+    listener.test();
   }
 
   onConnectionLost(responseObject) {
     console.log("connection lost");
-  
+
     if (responseObject.errorCode !== 0)
       console.log("onConnectionLost:" + responseObject.errorMessage);
   }
@@ -59,15 +61,13 @@ class Mqtt {
     console.log("sendMessage");
     console.log(this.isConnected);
 
-    
-
     var message = new Paho.MQTT.Message(text);
     message.destinationName = topic;
     this.client.send(message);
   }
 
   subscribe(topic) {
-    this.isConnected+=".";
+    this.isConnected += ".";
     console.log(this.isConnected);
     this.client.subscribe(topic);
   }

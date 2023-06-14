@@ -10,9 +10,9 @@
     <canvas id="drawingArea"> </canvas>
     <canvas
       id="myCanvas"
-      width="200"
-      height="100"
-      style="border: 1px solid #d3d3d3"
+      style="border: 1px solid gainsboro;
+      width: 100px;
+      height: 100px;"
     >
     </canvas>
 
@@ -33,7 +33,7 @@
   <script>
     var area = document.getElementById("drawingArea");
     var drawpad = new Drawpad(area);
-    var mqtt = new Mqtt();
+    var mqtt = new Mqtt(this);
     mqtt.connect();
 
     
@@ -44,5 +44,10 @@
     function button2(){
       mqtt.sendMessage("hi","/test");
     }
+
+    function test(){
+      alert("test");
+    }
+
   </script>
 </html>
