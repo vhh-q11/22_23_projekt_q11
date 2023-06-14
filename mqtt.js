@@ -1,29 +1,23 @@
-class Mqtt {
-  constructor(listener) {
-    this.listener = listener;
-   
-    console.log("Konstruktor mit Listener: "+listener);
-    this.isConnected = "nein";
-  }
 
-  connect() {
-    this.clientid =
+
+  function connect() {
+    clientid =
       "vhh" + new Date().getMilliseconds() + new Date().getSeconds();
 
-    this.client = new Paho.MQTT.Client(
+    client = new Paho.MQTT.Client(
       "mqtt.eclipseprojects.io",
       443,
-      this.clientid
+      clientid
     );
 
-    this.client.onConnectionLost = this.onConnectionLost;
-    this.client.onMessageArrived = this.onMessageArrived;
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
     var options = {
       timeout: 3,
       useSSL: true,
       cleanSession: true,
       reconnect: true,
-      onSuccess: this.onConnect,
+      onSuccess: onConnect,
       onFailure: function (message) {
         console.log(
           new Date().toUTCString() +
@@ -35,40 +29,38 @@ class Mqtt {
     };
     // connect the client
 
-    this.client.connect(options);
+    client.connect(options);
   }
 
-  onConnect() {
-    this.isConnected = "ja";
+  function onConnect() {
+    isConnected = "ja";
     console.log("function onConnect");
-    console.log("connected: " + this.isConnected);
     listener.test();
   }
 
-  onConnectionLost(responseObject) {
+  function onConnectionLost(responseObject) {
     console.log("connection lost");
 
     if (responseObject.errorCode !== 0)
       console.log("onConnectionLost:" + responseObject.errorMessage);
   }
 
-  onMessageArrived(message) {
-    console.log(this.isConnected);
+  function onMessageArrived(message) {
+    console.log(isConnected);
     console.log("onMessageArrived:" + message.payloadString);
   }
 
-  sendMessage(text, topic) {
+  function sendMessage(text, topic) {
     console.log("sendMessage");
-    console.log(this.isConnected);
-
+    console.log(isConnected);
     var message = new Paho.MQTT.Message(text);
     message.destinationName = topic;
-    this.client.send(message);
+    client.send(message);
   }
 
-  subscribe(topic) {
-    this.isConnected += ".";
-    console.log(this.isConnected);
-    this.client.subscribe(topic);
+  function subscribe(topic) {
+    isConnected += ".";
+    console.log(isConnected);
+    client.subscribe(topic);
   }
-}
+
