@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head> 
+  <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
@@ -14,7 +14,7 @@
       height="100"
       style="border: 1px solid #d3d3d3"
     >
-  </canvas>
+    </canvas>
 
     <script>
       var c = document.getElementById("myCanvas");
@@ -24,14 +24,25 @@
       ctx.stroke();
     </script>
   </body>
+  <button onclick="button1()">subscribe</button>
+  <button onclick="button2()">senden</button>
   <script src="draw.js"></script>
   <script src="mqtt.js"></script>
-  <script scr="paho-mqtt.js"></script>
-  <script scr="mqtt.js"></script>
+  <script src="paho-mqtt.js"></script>
 
   <script>
     var area = document.getElementById("drawingArea");
     var drawpad = new Drawpad(area);
-   // var mqtt=new Mqtt();
+    var mqtt = new Mqtt();
+    mqtt.connect();
+
+    
+    function button1(){
+      mqtt.subscribe("/test");
+   
+    }
+    function button2(){
+      mqtt.sendMessage("hi","/test");
+    }
   </script>
 </html>
