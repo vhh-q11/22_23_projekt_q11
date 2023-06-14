@@ -18,6 +18,8 @@
 
     <script>
       var c = document.getElementById("myCanvas");
+      c.heigth=window.heigth;
+      c.width=window.width;
       var ctx = c.getContext("2d");
       ctx.moveTo(0, 0);
       ctx.lineTo(200, 100);
