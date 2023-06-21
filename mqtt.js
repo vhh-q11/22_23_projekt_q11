@@ -1,14 +1,7 @@
-
-
 function connect() {
-  clientid =
-    "vhh" + new Date().getMilliseconds() + new Date().getSeconds();
+  clientid = "vhh" + new Date().getMilliseconds() + new Date().getSeconds();
 
-  client = new Paho.MQTT.Client(
-    "mqtt.eclipseprojects.io",
-    443,
-    clientid
-  );
+  client = new Paho.MQTT.Client("mqtt.eclipseprojects.io", 443, clientid);
 
   client.onConnectionLost = onConnectionLost;
   client.onMessageArrived = onMessageArrived;
@@ -21,9 +14,9 @@ function connect() {
     onFailure: function (message) {
       console.log(
         new Date().toUTCString() +
-        "Connection failed: " +
-        message.errorMessage +
-        "Retrying"
+          "Connection failed: " +
+          message.errorMessage +
+          "Retrying"
       );
     },
   };
@@ -46,11 +39,8 @@ function onConnectionLost(responseObject) {
 }
 
 function onMessageArrived(message) {
-   console.log("onMessageArrived:" + message.payloadString);
+  erhalteNachricht(message.payloadString);
 }
-
-
-
 
 function sendMessage(text, topic) {
   var message = new Paho.MQTT.Message(text);
@@ -61,4 +51,3 @@ function sendMessage(text, topic) {
 function subscribe(topic) {
   client.subscribe(topic);
 }
-

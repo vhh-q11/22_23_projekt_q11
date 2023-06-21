@@ -35,20 +35,24 @@
 <script>
   var area = document.getElementById("drawingArea");
   var drawpad = new Drawpad(area);
-
+  const output=document.getElementById("ausgabe");
   connect();
 
 
 
-  var themaInput;
+  var topic;
 
   function button1() {
-    themaInput = document.getElementById("thema");
-    subscribe(themaInput.value);
+    topic = document.getElementById("thema").value;
+    subscribe(topic);
   }
   function button2() {
-    nachrichttext= document.getElementById("nachricht");
-    sendMessage(nachrichttext.value, themaInput.value);
+    nachrichttext= document.getElementById("nachricht").value;
+    sendMessage(nachrichttext,topic)
+  }
+
+  function erhalteNachricht(message){
+    output.innerHTML+="<br>"+message;
   }
 
 
