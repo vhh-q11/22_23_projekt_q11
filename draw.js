@@ -2,34 +2,64 @@ class Drawpad {
   constructor(d) {
     this.drawingArea = d;
     this.ctx = d.getContext("2d");
-    this.#addEventListeners();
+    
   }
 
-  #addEventListeners() {
+  addEventListeners() {
     // eine private Methode
     this.drawingArea.onmousemove = (evt) => {
       if (this.mousePressed == true) {
-        const rect = this.drawingArea.getBoundingClientRect(); // hole die Koordinaten der Drawingarea
-        const x = evt.clientX - rect.left;
-        const y = evt.clientY - rect.top;
-        this.ctx.lineTo(x, y);
+        const mouse = this.#getMouseCoordinates(evt);
+        this.ctx.lineTo(mouse.x, mouse.y);
         this.ctx.stroke();
+        sendMessage("M " + mouse.x + " " + mouse.y, topic);
       }
     };
 
+
+
+
     this.drawingArea.onmousedown = (evt) => {
-      const rect = this.drawingArea.getBoundingClientRect(); // hole die Koordinaten der Drawingarea
-      const x = evt.clientX - rect.left;
-      const y = evt.clientY - rect.top;
+      const mouse = this.#getMouseCoordinates(evt);
       this.mousePressed = true;
-      this.ctx.moveTo(x, y);
+      this.ctx.moveTo(mouse.x, mouse.y);
+      sendMessage("D", topic);
     };
 
     this.drawingArea.onmouseup = (evt) => {
-      const rect = this.drawingArea.getBoundingClientRect(); // hole die Koordinaten der Drawingarea
-      const x = evt.clientX - rect.left;
-      const y = evt.clientY - rect.top;
+      sendMessage("U", topic);
       this.mousePressed = false;
     };
   }
+
+  #getMouseCoordinates(evt) {
+    const rect = this.drawingArea.getBoundingClientRect(); // hole die Koordinaten der Drawingarea
+    const x = evt.clientX - rect.left;
+    const y = evt.clientY - rect.top;
+    const pos = {
+      "x": x,
+      "y": y
+    }
+
+    return pos;
+  }
+
+
+  move(x, y) {
+    if (this.mousePressed == true) {
+      this.ctx.lineTo(x, y);
+      this.ctx.stroke();
+    }
+  }
+
+  mouseDown() {
+    this.ctx.moveTo(x, y);
+    this.mousePressed = true;
+  }
+
+  mouseUp() {
+    this.mousePressed = false;
+  }
+
+
 }
