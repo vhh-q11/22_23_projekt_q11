@@ -2,6 +2,7 @@ class Drawpad {
   constructor(d) {
     this.drawingArea = d;
     this.ctx = d.getContext("2d");
+    this.addEventListeners();
     
   }
 
@@ -60,6 +61,11 @@ class Drawpad {
   mouseUp() {
     this.mousePressed = false;
   }
+
+  changeColor(farbe) {
+    this.ctx.strokeStyle = farbe;
+  }
+
 
 
 }
