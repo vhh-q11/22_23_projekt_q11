@@ -9,20 +9,21 @@
 <script>
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
+ctx.beginPath();
 ctx.strokeStyle = '#ff0000';
 
 ctx.moveTo(0,0);
 ctx.lineTo(200,100);
 ctx.lineWidth = 10;
 ctx.stroke();
-
+ctx.beginPath();
    
-
+ctx.strokeStyle = '#00aa0';
     
       ctx.moveTo(100, 150);
       ctx.lineTo(450, 50);
       ctx.lineWidth = 10;
-       ctx.strokeStyle = '#aa0';
+   
 	ctx.stroke();
       // set line color
     </script>
