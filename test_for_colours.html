@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>HTML5 Canvas</h1>
+<h2>The lineWidth Propery</h2>
+
+<canvas id="myCanvas" width="500" height="300" style="border:1px solid grey;"></canvas>
+
+<script>
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+ctx.strokeStyle = '#ff0000';
+
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.lineWidth = 10;
+ctx.stroke();
+
+   
+
+    
+      ctx.moveTo(100, 150);
+      ctx.lineTo(450, 50);
+      ctx.lineWidth = 10;
+       ctx.strokeStyle = '#aa0';
+	ctx.stroke();
+      // set line color
+    </script>
+  </body>
+
+
+    </script>
+  </body>
+
+</script>
+
+</body>
+</html>
