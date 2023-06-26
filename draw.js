@@ -3,6 +3,7 @@ class Drawpad {
     this.drawingArea = d;
     this.ctx = d.getContext("2d");
     this.addEventListeners();
+    this.farbe = "#000000";
     
   }
 
@@ -21,6 +22,7 @@ class Drawpad {
 
 
     this.drawingArea.onmousedown = (evt) => {
+      this.ctx.beginPath();
       const mouse = this.#getMouseCoordinates(evt);
       this.mousePressed = true;
       this.ctx.moveTo(mouse.x, mouse.y);
@@ -54,6 +56,8 @@ class Drawpad {
   }
 
   mouseDown() {
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = this.farbe;
     this.ctx.moveTo(x, y);
     this.mousePressed = true;
   }
@@ -64,8 +68,11 @@ class Drawpad {
 
   changeColor(farbe) {
     this.ctx.strokeStyle = farbe;
+    sendMessage("C " + farbe, topic);
   }
 
-
+  setColor(farbe) {
+    this.farbe = farbe;
+  }
 
 }
