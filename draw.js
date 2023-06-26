@@ -64,6 +64,7 @@ class Drawpad {
 
   changeColor(farbe) {
     this.ctx.strokeStyle = farbe;
+    this.ctx.beginPath();
   }
 
 
