@@ -22,10 +22,9 @@
 <br>
 <br>
 <label for="color">Wähle eine Farbe:</label>
-<input type="color" id="color" name="color" value="#ff0000">
+<input onChange ="farbeWechseln()" type="color" id="color" name="color" value="#ff0000">
 <br>
-<button onClick = "buttonFarbe()">auswählen</button>
-<br>
+
 
 
 <br>
@@ -65,12 +64,14 @@
   function erhalteNachricht(message){
   }
 
-  function buttonFarbe() {
+  function farbeWechseln() {
     const farbe = document.getElementById("color").value;
     console.log(farbe);
     drawpad.changeColor(farbe);
 
   }
+
+
 
 
 </script>
