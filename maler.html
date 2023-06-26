@@ -1,4 +1,4 @@
-vv<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -15,10 +15,19 @@ vv<!DOCTYPE html>
   </canvas>
 
   <script>
-
-
+    
   </script>
+
 </body>
+<br>
+<br>
+<label for="color">Wähle eine Farbe:</label>
+<input onChange ="farbeWechseln()" type="color" id="color" name="color" value="#ff0000">
+<br>
+
+
+
+<br>
 <br>
 <input type="text" id="thema">
 <button onclick="button1()">subscribe</button>
@@ -52,8 +61,20 @@ vv<!DOCTYPE html>
   }
 
   
+  function erhalteNachricht(message){
+  }
+
+  function farbeWechseln() {
+    const farbe = document.getElementById("color").value;
+    console.log(farbe);
+    drawpad.changeColor(farbe);
+
+  }
+
+
 
 
 </script>
 
 </html>
+
