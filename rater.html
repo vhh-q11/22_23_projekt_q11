@@ -114,35 +114,39 @@
 
  
 
-  function erhalteNachricht(message){
+function erhalteNachricht(message){
 
-    output.innerHTML+="<br>"+message;
+output.innerHTML+="<br>"+message;
 
-    const messageparts=message.split(" ");
+const messageparts=message.split(" ");
 
-    if(messageparts[0]=="D"){
+if(messageparts[0]=="D"){
 
-    drawpad.mouseDown();
+drawpad.mouseDown();
 
-    }
+}
 
-    if(messageparts[0]=="U"){
+if(messageparts[0]=="U"){
 
-      drawpad.mouseUp();
+  drawpad.mouseUp();
 
-    }
+}
 
-    if(messageparts[0]=="M"){
+if(messageparts[0]=="M"){
 
-      const x=messageparts[1];
+  const x=messageparts[1];
 
-      const y=messageparts[2];
+  const y=messageparts[2];
 
-      drawpad.move(x, y);
+  drawpad.move(x, y);
 
-    }
+}
 
-  }
+if(messageparts[0]=="C"){
+  drawpad.setColor(this.farbe=messageparts[1]);
+}
+
+}
 
  
 
