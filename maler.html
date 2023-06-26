@@ -30,7 +30,7 @@
 <br>
 <br>
 <input type="text" id="thema">
-<button onclick="button1()">subscribe</button>
+<button onclick="button1()">Spielcode festlegen</button>
 <br>
 <input type="text" id="nachricht">
 <button onclick="button2()">senden</button>
@@ -43,17 +43,19 @@
 
 <script>
   var area = document.getElementById("drawingArea");
-  var drawpad = new Drawpad(area);
+  var drawpad; 
   const output=document.getElementById("ausgabe");
   connect();
 
 
 
-  var topic;
+  var topic="";
 
   function button1() {
     topic = document.getElementById("thema").value;
+    drawpad = new Drawpad(area);
     subscribe(topic);
+
   }
   function button2() {
     nachrichttext= document.getElementById("nachricht").value;
