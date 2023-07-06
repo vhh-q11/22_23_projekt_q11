@@ -22,18 +22,22 @@
 <br>
 <br>
 <label for="color">Wähle eine Farbe:</label>
-<input onChange ="farbeWechseln()" type="color" id="color" name="color" value="#ff0000">
+<input onChange ="farbeWechseln()" type="color" id="color" name="color" value="#000000">
 <br>
+<input type="number" id="strichbreite" value=""
 
 
 
 <br>
 <br>
 <input type="text" id="thema">
-<button onclick="button1()">Spielcode festlegen</button>
+<button id="button1" onclick="button1()">Spielcode festlegen</button>
 <br>
-<input type="text" id="nachricht">
-<button onclick="button2()">senden</button>
+<input type="text" id="ratewort">
+<button id="button2" onclick="button2()">Ratewort festlegen</button>
+<br> <br>
+<button id="button3" onClick="button3()">neues Spiel</button>
+
 <div id="ausgabe">
 
 </div>
@@ -49,22 +53,36 @@
 
 
 
-  var topic="";
+  var topic= "";
+  var ratewort= "";
 
   function button1() {
     topic = document.getElementById("thema").value;
     drawpad = new Drawpad(area);
+    drawpad.addEventListeners();
     subscribe(topic);
+    document.getElementById("button1").style.visibility = "hidden";
+    document.getElementById("thema").disabled = "disabled";
 
   }
   function button2() {
-    nachrichttext= document.getElementById("nachricht").value;
-    sendMessage(nachrichttext,topic)
+    var rateeingabe = document.getElementById("ratewort");
+    ratewort = rateeingabe.value;
+    rateeingabe.disabled = "disabled";
+    var b = document.getElementById("button2");
+    b.style.visibility = "hidden";
+    
   }
 
-  
-  function erhalteNachricht(message){
+  function button3() {
+    drawpad.clear();
+    sendMessage("N", topic)
+    document.getElementById("button2").style.visibility = "visible";
+    document.getElementById("ratewort").disabled = "";
+
   }
+
+
 
   function farbeWechseln() {
     const farbe = document.getElementById("color").value;
@@ -73,7 +91,19 @@
 
   }
 
+  function erhalteNachricht(message){
 
+  output.innerHTML+="<br>"+message;
+
+  const messageparts=message.split(" ");
+  
+  if(messageparts[0]=="R"){
+    if(messageparts[2]==ratewort){
+      sendMessage("S " +messageparts[1]+ " " + messageparts[2]);
+      alert(messageparts[1] + " hat das Spiel gewonnen!!!!");
+    }
+  }
+}
 
 
 </script>
