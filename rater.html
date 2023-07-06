@@ -89,7 +89,6 @@
     topic = document.getElementById("thema").value;
 
     subscribe(topic);
-
   }
 
   function button2(){
@@ -148,9 +147,28 @@ if(messageparts[0]=="C"){
   drawpad.setColor(this.farbe=messageparts[1]);
 }
 
+
+
+if(messageparts[0]=="N"){
+console.log("hehe");
+drawpad.clear();
+drawpad.fertig();
 }
 
- 
+if(messageparts[0]=="S"){
+  const name=messageparts[1];
+
+  const wort=messageparts[2];
+  alert(name+" hat das Wort erraten! Es lautet "+wort+"!");
+
+
+
+}
+}
+
+
+
+
 
 </script>
 
