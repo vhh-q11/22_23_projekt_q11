@@ -73,8 +73,9 @@ class Drawpad {
     sendMessage("C " + farbe, topic);
   }
 
-  setColor(farbe) {
-    this.farbe = farbe;
+ setColor(farbe) {
+    this.ctx.strokeStyle = farbe;
+    this.ctx.beginPath();
   }
 
   fertig() {
