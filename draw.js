@@ -2,7 +2,6 @@ class Drawpad {
   constructor(d) {
     this.drawingArea = d;
     this.ctx = d.getContext("2d");
-    this.addEventListeners();
     this.farbe = "#000000";
     
   }
@@ -14,6 +13,7 @@ class Drawpad {
         const mouse = this.#getMouseCoordinates(evt);
         this.ctx.lineTo(mouse.x, mouse.y);
         this.ctx.stroke();
+        
         sendMessage("M " + mouse.x + " " + mouse.y, topic);
       }
     };
@@ -55,12 +55,13 @@ class Drawpad {
     }
   }
 
-  mouseDown() {
+  mouseDown(x, y) {
     this.ctx.beginPath();
     this.ctx.strokeStyle = this.farbe;
     this.ctx.moveTo(x, y);
     this.mousePressed = true;
   }
+  
 
   mouseUp() {
     this.mousePressed = false;
@@ -75,5 +76,15 @@ class Drawpad {
   setColor(farbe) {
     this.farbe = farbe;
   }
+
+  fertig() {
+    alert("Der Maler hat das Spiel zurückgesetzt");
+  }
+  clear(){
+    this.ctx.clearRect(0,0,500,500);
+  }
+
+
+ 
 
 }
