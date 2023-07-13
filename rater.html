@@ -40,19 +40,19 @@
 
 <input type="text" id="thema">
 
-<button onclick="button1()">subscribe</button>
+<button id="button1" onclick="button1()">Spielcode festlegen</button>
 
 <br>
 
 <input type="text" id="name">
 
-<button onclick="button2()">Name bestätigen</button>
+<button id="button2" onclick="button2()">Name bestätigen</button>
 
 <br>
 
 <input type="text" id="nachricht">
 
-<button onclick="button3()">Antwort senden</button>
+<button id="button3" onclick="button3()">Antwort senden</button>
 
 <div id="ausgabe">
 
@@ -87,13 +87,16 @@
   function button1() {
 
     topic = document.getElementById("thema").value;
-
     subscribe(topic);
+    document.getElementById("button1").style.visibility = "hidden";
+    document.getElementById("thema").disabled = "disabled";
   }
 
   function button2(){
 
     ratername=document.getElementById("name").value;
+    document.getElementById("button2").style.visibility = "hidden";
+    document.getElementById("name").disabled = "disabled";
 
   }
 
@@ -101,9 +104,9 @@
 
   function button3() {
 
-    nachrichttext= "R "+ratername+" "+document.getElementById("nachricht").value;
-
+    nachrichttext= "R**"+ratername+"**"+document.getElementById("nachricht").value;
     sendMessage(nachrichttext,topic)
+    document.getElementById("nachricht").value = "";
 
   }
 
@@ -117,7 +120,7 @@ function erhalteNachricht(message){
 
 output.innerHTML+="<br>"+message;
 
-const messageparts=message.split(" ");
+const messageparts=message.split("**");
 
 if(messageparts[0]=="D"){
 
