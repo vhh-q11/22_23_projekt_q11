@@ -14,6 +14,8 @@
 
   </canvas>
 
+  <div id="info"></div>
+
   <script>
     
   </script>
@@ -49,6 +51,7 @@
   var area = document.getElementById("drawingArea");
   var drawpad; 
   const output=document.getElementById("ausgabe");
+  const info=document.getElementById("info");
   connect();
 
 
@@ -71,7 +74,7 @@
     rateeingabe.disabled = "disabled";
     var b = document.getElementById("button2");
     b.style.visibility = "hidden";
-    
+    info.innerHTML = "Ein neues Spiel hat begonnen";
   }
 
   function button3() {
@@ -79,6 +82,7 @@
     sendMessage("N", topic)
     document.getElementById("button2").style.visibility = "visible";
     document.getElementById("ratewort").disabled = "";
+    
 
   }
 
@@ -99,9 +103,11 @@
   console.log(messageparts);
   
   if(messageparts[0]=="R"){
-    if(messageparts[2]==ratewort){
+    console.log(messageparts[2]);
+    if(messageparts[2].toLowerCase()==ratewort.toLowerCase()){
       sendMessage("S**" +messageparts[1]+ "**" + messageparts[2], topic);
-      alert(messageparts[1] + " hat das Spiel gewonnen!!!!");
+      info.innerHTML= messageparts[1] + " hat das Spiel gewonnen!!!!";
+      
     }
   }
 }
@@ -110,4 +116,3 @@
 </script>
 
 </html>
-
