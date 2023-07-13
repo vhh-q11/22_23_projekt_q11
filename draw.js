@@ -14,7 +14,7 @@ class Drawpad {
         this.ctx.lineTo(mouse.x, mouse.y);
         this.ctx.stroke();
         
-        sendMessage("M " + mouse.x + " " + mouse.y, topic);
+        sendMessage("M**" + mouse.x + "**" + mouse.y, topic);
       }
     };
 
@@ -69,12 +69,14 @@ class Drawpad {
 
   changeColor(farbe) {
     this.ctx.strokeStyle = farbe;
+    this.farbe=farbe;
     this.ctx.beginPath();
     sendMessage("C " + farbe, topic);
   }
 
  setColor(farbe) {
     this.ctx.strokeStyle = farbe;
+    this.farbe=farbe;
     this.ctx.beginPath();
   }
 
